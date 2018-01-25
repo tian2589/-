@@ -1,0 +1,44 @@
+2018-01-23
+Q1:为什么abc作为参数下面变了？
+-- function_test2.lua 脚本文件
+function testFun(tab,abc)
+    for k ,v in pairs(tab) do
+        print(abc(k,v));
+    end
+end
+
+
+tab={key1="val1",key2="val2"};
+testFun(tab,
+function(key,val)--匿名函数
+    return key.."="..val;
+end
+);
+Answer:函数在被调用的时候续写了。用一个匿名函数来赋予abc这个变量。匿名函数就是没名函数。
+函数的本质是方法，当赋值之后的函数会返回一系列值。
+方法的参数可以是函数（带return的function），也可以是表。函数之前没有赋值可以在之后赋值。
+
+Q2：为什么SetContextThink的执行函数的返回值会被用来作为触发间隔。
+Answer:就是这样设定的，dota2api没说清楚而已。函数本身具备执行和返回值两层概念，同时作用。
+
+2018-01-24
+心得：
+1.function a() == a=function() 都是定义变量a为一个函数。
+2.function avg(...)
+	tab={...}
+end
+avg(1,2)
+
+--等价于
+
+function avg(...)
+	tab=...
+end
+avg{1,2}
+在可变参数中，可以在调用函数的时候，给参数类型做定义，如{}表。
+3.不等号很奇怪~=
+4.print(string.gsub("aaab","a","x",2)),string.gsub外面再套上一层（）才会只返回一个字，感觉lua语法很多很随意，定义时也是习惯用法，记住就好，不要纠结。
+
+2018-01-25
+1.开心的买了一个新的键盘，对我来说可能是一个新的开始。
+2.	
